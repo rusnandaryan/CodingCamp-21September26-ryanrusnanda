@@ -1,0 +1,440 @@
+/* ============================================================
+   CSS Custom Properties — Light Theme (default)
+   ryan rusnanda
+   ============================================================ */
+:root {
+  --bg:           #f4f6f9;
+  --surface:      #ffffff;
+  --border:       #e2e8f0;
+  --text-primary: #1a202c;
+  --text-muted:   #718096;
+  --accent:       #6c63ff;
+  --accent-hover: #574fd6;
+  --danger:       #e53e3e;
+  --warning-bg:   #fff5f5;
+  --warning-text: #c53030;
+  --over-limit-bg:#fff0f0;
+  --over-limit-border: #fc8181;
+
+  /* Category pill colours */
+  --food-bg:       #fef9c3;
+  --food-text:     #92400e;
+  --transport-bg:  #dbeafe;
+  --transport-text:#1e40af;
+  --fun-bg:        #fce7f3;
+  --fun-text:      #9d174d;
+
+  --radius:  12px;
+  --shadow:  0 2px 12px rgba(0,0,0,.08);
+  --transition: .25s ease;
+}
+
+/* ── The Dark Theme ────────────────────────────────────────── */
+body.dark {
+  --bg:           #0f1117;
+  --surface:      #1a1d27;
+  --border:       #2d3148;
+  --text-primary: #e2e8f0;
+  --text-muted:   #a0aec0;
+  --accent:       #7c74ff;
+  --accent-hover: #9d97ff;
+  --danger:       #fc8181;
+  --warning-bg:   #2d1515;
+  --warning-text: #fc8181;
+  --over-limit-bg:#2d1515;
+  --over-limit-border: #fc8181;
+
+  --food-bg:       #3b2f00;
+  --food-text:     #fde68a;
+  --transport-bg:  #0c1d3b;
+  --transport-text:#93c5fd;
+  --fun-bg:        #2d0a1e;
+  --fun-text:      #f9a8d4;
+
+  --shadow: 0 2px 12px rgba(0,0,0,.4);
+}
+
+/* ============================================================
+   Reset & Base
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   Header
+   ============================================================ */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.app-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -.3px;
+  color: var(--accent);
+}
+
+.icon-btn {
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--transition), background var(--transition);
+}
+.icon-btn:hover { background: var(--border); }
+
+/* ============================================================
+   Layout
+   ============================================================ */
+.container {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 20px 16px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ============================================================
+   Card
+   ============================================================ */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.section-title {
+  font-size: .9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+/* ============================================================
+   Balance Card
+   ============================================================ */
+.balance-card { text-align: center; }
+
+.balance-label {
+  font-size: .85rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.balance-amount {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -1px;
+  transition: color var(--transition);
+}
+
+/* Over-limit state applied to balance card */
+.balance-card.over-limit {
+  background: var(--over-limit-bg);
+  border-color: var(--over-limit-border);
+}
+.balance-card.over-limit .balance-amount {
+  color: var(--danger);
+}
+
+/* Spend limit row */
+.limit-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.limit-label {
+  font-size: .82rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.limit-input {
+  width: 110px;
+  padding: 6px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-size: .9rem;
+  text-align: center;
+  transition: border-color var(--transition), background var(--transition);
+}
+.limit-input:focus { outline: none; border-color: var(--accent); }
+
+.limit-warning {
+  margin-top: 10px;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--warning-text);
+  background: var(--warning-bg);
+  border-radius: 8px;
+  padding: 6px 12px;
+  display: inline-block;
+}
+.limit-warning.hidden { display: none; }
+
+/* ============================================================
+   Form
+   ============================================================ */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-size: .95rem;
+  transition: border-color var(--transition), background var(--transition);
+  appearance: auto;
+}
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(108,99,255,.15);
+}
+
+/* Validation error state */
+.form-group input.invalid,
+.form-group select.invalid {
+  border-color: var(--danger);
+}
+
+.error-msg {
+  font-size: .78rem;
+  color: var(--danger);
+  display: none;
+}
+.error-msg.visible { display: block; }
+
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: .02em;
+  transition: background var(--transition), transform .1s;
+}
+.btn-primary:hover  { background: var(--accent-hover); }
+.btn-primary:active { transform: scale(.98); }
+
+/* ============================================================
+   Chart
+   ============================================================ */
+.chart-card { }
+
+.chart-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+}
+
+#spendingChart {
+  max-width: 260px;
+  max-height: 260px;
+}
+
+.chart-empty {
+  position: absolute;
+  font-size: .9rem;
+  color: var(--text-muted);
+  display: none;
+}
+.chart-empty.visible { display: block; }
+
+/* ============================================================
+   Transaction List
+   ============================================================ */
+.transaction-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 4px;
+  /* custom scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.transaction-list::-webkit-scrollbar { width: 5px; }
+.transaction-list::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+/* Individual transaction item */
+.transaction-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  transition: border-color var(--transition), background var(--transition);
+  animation: slideIn .2s ease;
+}
+
+/* Over-limit transaction highlight */
+.transaction-item.over-limit {
+  border-color: var(--over-limit-border);
+  background: var(--over-limit-bg);
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+}
+
+.item-name {
+  font-size: .95rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Category pill */
+.category-pill {
+  font-size: .72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.category-pill.food      { background: var(--food-bg);      color: var(--food-text); }
+.category-pill.transport { background: var(--transport-bg); color: var(--transport-text); }
+.category-pill.fun       { background: var(--fun-bg);       color: var(--fun-text); }
+
+/* Over-limit badge */
+.over-limit-badge {
+  font-size: .68rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--danger);
+  color: #fff;
+}
+
+.item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.item-amount {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.transaction-item.over-limit .item-amount {
+  color: var(--danger);
+}
+
+.delete-btn {
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: .78rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+}
+.delete-btn:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+  background: var(--warning-bg);
+}
+
+/* Empty state */
+.list-empty {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: .9rem;
+  padding: 12px 0 4px;
+}
+.list-empty.hidden { display: none; }
+
+/* ============================================================
+   Responsive tweaks
+   ============================================================ */
+@media (max-width: 360px) {
+  .balance-amount { font-size: 2rem; }
+  .container { padding: 14px 12px 48px; }
+}
